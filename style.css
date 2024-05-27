@@ -27,7 +27,7 @@
     border-radius: 5px;
     font-family: "Overpass", sans-serif;
     margin: auto;
-    line-height: 20px;
+    line-height: 50px;
     & h1 {
         font-size: 50px;
         font-weight: bold;

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["index.html"],
   theme: {
     extend: {
       
@@ -9,3 +9,4 @@ module.exports = {
   plugins: [],
 }
 
+// npx tailwindcss -i ./style.css -o ./output.css --watch         
