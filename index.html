@@ -5,23 +5,35 @@
         <title>Slythefox's Website</title>
         <!-- <link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="output.css">
-        <link rel="icon" href="./icon.png" type="image/x-icon">
+        <link rel="icon" href="./favicon.png" type="image/x-icon">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
-        <div class="flex relative h-fit, items-center justify-center w-screen">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/ZB_Interregio_mit_HGe_101_bei_Niederried.jpg"; class="object-cover w-screen max-h-[500px] brightness-75">
-            <div class="bg-black/50 text-center absolute text-white font font-overpass m-5 p-5 rounded-lg">
-                <h1 class="font-bold text-5xl leading-[1.5]">Slythefox</h1>
-                <h2 class="">slythefox18.github.io</h2>
+        <header>
+            <div class="flex relative h-fit, items-center justify-center w-screen">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/ZB_Interregio_mit_HGe_101_bei_Niederried.jpg"; class="object-cover w-screen max-h-[500px] brightness-75">
+                <div class="bg-black/50 text-center absolute text-white font font-overpass m-5 p-5 rounded-lg">
+                    <h1 class="font-bold text-5xl leading-[1.5]">Slythefox</h1>
+                    <h2 class="">slythefox18.github.io</h2>
+                </div>
+                <div class="group">
+                    <!-- Image Credit Tooltip -->
+                    <i class="material-icons absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md hover:text-green-200 text-white transition-all p-1">info</i>
+                    <p class="absolute bottom-3 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans">Kabelleger / David Gubler (<a href="http://www.bahnbilder.ch">http://www.bahnbilder.ch</a>), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
+                </div>
             </div>
-            <div class="group">
-                <i class="material-icons absolute bottom-3 left-3 text-gray-500 image-info-btn hover:text-gray-300">info</i>
-                <p class="absolute bottom-2 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans">Kabelleger / David Gubler (http://www.bahnbilder.ch), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
+        </header>
+        <footer class="bg-black text-white font-overpass p-10">
+            <h1 class="font-bold text-2xl">Slythefox</h1>
+            <p class="text-sm text-gray-400">slythefox18.github.io</p>
+            <br>
+            <div class="transition-all group:">
+                <p class="relative hover:translate-x-12">fun</p>
+                <p class="absolute material-icons scale-0 group-hover:scale-100 text-white">code</p>
             </div>
-
+        </footer>
     </body>
 </html>
