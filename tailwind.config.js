@@ -3,10 +3,11 @@ module.exports = {
   content: ["index.html"],
   theme: {
     extend: {
-      
+      fontFamily: {
+        overpass: ['Overpass, sans-serif'],
+      },
     },
-  },
   plugins: [],
+  }
 }
-
-// npx tailwindcss -i ./style.css -o ./output.css --watch         
+// npx tailwindcss -i ./style.css -o ./output.css --watch
