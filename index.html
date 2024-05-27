@@ -21,18 +21,51 @@
                 </div>
                 <div class="group">
                     <!-- Image Credit Tooltip -->
-                    <i class="material-icons absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md hover:text-green-200 text-white transition-all p-1">info</i>
-                    <p class="absolute bottom-3 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans">Kabelleger / David Gubler (<a href="http://www.bahnbilder.ch">http://www.bahnbilder.ch</a>), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
+                    <i class="material-icons absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md hover:text-gray-300 text-white transition-all p-1">info</i>
+                    <p class="absolute bottom-3 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans duration-300">Kabelleger / David Gubler (<a href="http://www.bahnbilder.ch">http://www.bahnbilder.ch</a>), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
                 </div>
             </div>
         </header>
+        <main class="font-overpass bg-black text-white p-10">
+            <div id="gameContainer">
+                <div>
+                    <h1 class="font-bold text-3xl">
+                        Tic Tac Toe Game
+                    </h1>
+                </div>
+                <div id="cellContainer">
+                    <div cellIndex="0" class="cell"></div>
+                    <div cellIndex="1" class="cell"></div>
+                    <div cellIndex="2" class="cell"></div>
+                    <div cellIndex="3" class="cell"></div>
+                    <div cellIndex="4" class="cell"></div>
+                    <div cellIndex="5" class="cell"></div>
+                    <div cellIndex="6" class="cell"></div>
+                    <div cellIndex="7" class="cell"></div>
+                    <div cellIndex="8" class="cell"></div>
+                </div>
+                <h2 id="statusText"></h2>
+                <button id="restartGame">Restart</button>
+            </div>
+            <script src="tictactoe.js"></script>
+        </main>
         <footer class="bg-black text-white font-overpass p-10">
             <h1 class="font-bold text-2xl">Slythefox</h1>
             <p class="text-sm text-gray-400">slythefox18.github.io</p>
             <br>
-            <div class="transition-all group:">
-                <p class="relative hover:translate-x-12">fun</p>
-                <p class="absolute material-icons scale-0 group-hover:scale-100 text-white">code</p>
+            <div class="grid auto-cols-auto grid-cols-2">
+                <div class="group flex py-5">
+                    <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18" target="_blank">Github Profile</a>
+                    <p class="absolute material-icons scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">person</p>
+                </div>
+                <div class="group flex py-5">
+                    <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18/slythefox18.github.io" target="_blank">Source Code</a>
+                    <p class="absolute material-icons scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">code</p>
+                </div>
+                <div class="group flex py-5">
+                    <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://open.spotify.com/user/31e4evuzj76hwehexfluclghhici?si=48e8e5de98e14e34" target="_blank">Spotify</a>
+                    <p class="absolute material-icons scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">headphones</p>
+                </div>
             </div>
         </footer>
     </body>

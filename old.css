@@ -1,0 +1,40 @@
+.title {
+    display: flex;
+    position: relative;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.title-content {
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.75);
+    color: white;
+    z-index: 5;
+    text-align: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 5px;
+    font-family: "Overpass", sans-serif;
+    margin: auto;
+    line-height: 50px;
+    & h1 {
+        font-size: 50px;
+        font-weight: bold;
+    }
+    & h2 {
+        font-size: 18px;
+        font-weight: normal;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
