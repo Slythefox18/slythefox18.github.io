@@ -802,6 +802,38 @@ video {
   border-bottom: none;
 }
 
+/* for circle */
+
+.board.circle .cell:not(.circle):not(.x):hover {
+  background: radial-gradient(var(--color) 60%, transparent 60%);
+}
+
+/* for circle (set) */
+
+.cell:not(.x).circle {
+  background: radial-gradient(var(--color-set) 60%, transparent 60%);
+}
+
+/* for cross (set) */
+
+.cell:not(.circle).x {
+  background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* for cross */
+
+.board.x .cell:not(.circle):not(.x):hover {
+  background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .hover\:rounded-md:hover {
   border-radius: 0.375rem;
 }
