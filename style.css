@@ -2,16 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--cell-size: 100px;
+
+	--color: #81c3fd; /* for hover */
+	--color-set: #0275d8; /* when set */
+	--l: 10px; /* X line-width */
+}
+
 .cell {
-    box-shadow: 0 0 0 2px;
-    line-height: 75px;
-    @apply w-[75px] h-[75px] text-[50px] text-white
+    @apply border border-solid border-white flex justify-center items-center relative cursor-pointer w-24 h-24 m-0 p-0 gap-x-0
 }
 
-#cellContainer {
-    @apply grid grid-cols-3 w-[225px] m-auto
+.board {
+    grid-template-columns: repeat(3, auto);
+    @apply grid justify-center content-center justify-items-center w-96 h-96 m-0 gap-x-0 p-0
 }
 
-#gameContainer {
-    @apply text-center
+/* remove border for edges */
+.cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:nth-child(1), .cell:nth-child(4), .cell:nth-child(7) {
+	border-left: none;
+}
+
+.cell:nth-child(3), .cell:nth-child(6), .cell:nth-child(9) {
+	border-right: none;
+}
+
+.cell:nth-child(7), .cell:nth-child(8), .cell:nth-child(9) {
+	border-bottom: none;
 }
