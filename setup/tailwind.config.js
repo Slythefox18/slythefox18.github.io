@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["index.html"],
+  content: [
+    "./index.html"
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -10,4 +12,4 @@ module.exports = {
   plugins: [],
   }
 }
-// npx tailwindcss -i ./style.css -o ./output.css --watch
+// npx tailwindcss -i ./css/style.css -o ./css/output.css --watch
