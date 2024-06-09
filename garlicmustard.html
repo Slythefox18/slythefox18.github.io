@@ -9,43 +9,138 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    </head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    </head>
     <body>
-        <header>
+        <header class="flex justify-center">
             <div class="flex relative h-fit, items-center justify-center w-screen">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Alliaria_petiolata_Czosnaczek_pospolity_2020-04-24_01.jpg"; class="object-cover w-screen max-h-[500px] brightness-75">
                 <div class="bg-black/50 text-center absolute text-white font font-overpass m-5 p-5 rounded-lg">
                     <h1 class="font-bold text-5xl leading-[1.5]">Garlic Mustard</h1>
-                    <h2 class="">Information Poster</h2>
+                    <h2 class="">Invasive Species Information Poster</h2>
                 </div>
                 <div class="group">
                     <!-- Image Credit Tooltip -->
-                    <i class="material-icons absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md hover:text-gray-300 text-white transition-all p-1">info</i>
+                    <i class="material-symbols-outlined absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md text-white transition-all p-1 material-symbols-filled">info</i>
                     <p class="absolute bottom-3 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans duration-300"><a href="https://commons.wikimedia.org/wiki/File:Alliaria_petiolata_Czosnaczek_pospolity_2020-04-24_01.jpg">Agnieszka Kwiecień, Nova</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
                 </div>
             </div>
         </header>
-        <main class="font-overpass bg-black text-white p-10">
-            <div class="">
-                <h1 class="text-3xl font-bold w-fit">Background Information</h1>
+        <main class="font-overpass bg-black text-white p-10 flex justify-center">
+            <div class="max-w-[1080px]">
+                <div class="grid grid-cols-2 gap-4">
+                    
+                    <div>
+                        <h1 class="text-3xl font-bold w-fit">Background Information</h1>
+                        <br>
+                        <p class="font-thin">
+                            Garlic Mustard was brought to Canada as an edible plant in the early 1800s (1)
+                            This was because the plant is high in vitamin A and vitamin C and smells similar to garlic (1)
+                            As an example, the plant contains more vitamin C per weight than oragnes (2)
+                            Since then, the plant has spread accross much of North America
+                        </p>
+                    </div>
+                    <figure class="p-2 m-2">
+                        <img src="images\garlicMustardDistributionMap.png" class="rounded-md m-2 max-h-full" alt="A map of Garlic Mustard spread in North America">
+                        <figcaption class="text-center font-light text-sm">A map of Garlic Mustard spread in North America</figcaption>
+                    </figure>
+                </div>
                 <br>
-                <figure class="float-right clear-right p-2 m-auto max-w-[40vw]">
-                    <img src="images\garlicMustardDistributionMap.png" class="m-5 rounded-md">
-                    <figcaption class="inline text-center">A map of Garlic Mustard spread in North America</figcaption>
-                </figure>
-                <p class="font-thin">
-                    Garlic Mustard was brought to Canada as an edible plant in the early 1800s (Ontario's Invading Species Awareness Program, n.d.).
-                    This was because is was high in vitamin A and vitamin C and smells similar to garlic (Ontario's Invading Species Awareness Program, n.d.).
-                    As an example, the plant contains more vitamin C per weight than oragnes (Government of Ontario, 2023).
-                    Since then, the plant has spread accross much of North America
-                </p>
+                <hr>
+                <br>
+                <div class="grid grid-cols-2 gap-4">
+                    <figure class="p-2 m-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Garlic_Mustard_%28Alliaria_petiolata%29_-_Guelph%2C_Ontario_2020-04-08_%2802%29.jpg" alt="An image of Garlic Mustard spread in Guelph, Ontario" class="rounded-md m-2 h-full max-h-[90%]">
+                        <figcaption class="font-light text-center text-sm">An image of Garlic Mustard spread in Guelph, Ontario</figcaption>
+                    </figure>
+                    <div>
+                        
+                        <h1 class="text-3xl font-bold w-fit">Impacts</h1>
+                        <br>
+                        <p class="font-thin">
+                            Chemicals in the roots of Garlic Mustard have been shown to prevent growth of other plants (3)
+                            The plant's chemicals also prevent the growth of arbuscular mycorrhizal fungi (AMF), a fungi that helps other trees and plants absorb nutrients and water (3)
+                            The loss of AMF allows non-native plants to displace native plants altering the ecosystem (3)
+                            This effect can last for years after the Garlic Mustard has been removed (3)
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="">
+                    <div class="">
+                        <figure class="p-2 m-2 max-h-96 float-right">
+                            <span class="flex justify-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Garlic_Mustard_%28Alliaria_petiolata%29_-_Guelph%2C_Ontario_2020-05-16.jpg" alt="An image of Garlic Mustard found in Guelph, Ontario" class="max-h-72 rounded-md m-2">
+                            </span>
+                            <figcaption class="font-light text-center text-sm">An image of Garlic Mustard found in Guelph, Ontario</figcaption>
+                        </figure>
+                        <h1 class="text-3xl font-bold w-fit">Species Control</h1>
+                        <br>
+                        <div>
+                            <h3 class="text-xl">Mangement</h3>
+                            <p class="font-thin">Hand Pulling: You can hand pull Garlic Mustard out of the ground (1). You must make sure to remove the entire root of the plant to avoid the plant resprouting (3). To be most effective, it is ideal to replant native species in place of the Garlic Mustard (3).</p>
+                            <br>
+                            <p class="font-thin">Mowing: You can cut 2nd year plants at the base of the stem, ideally just after flowering, and before the plants produce seeds (3). This may need to be repeated since the plants may flower at diffrent times. It is better than hand-pulling since it causes less soil disturbance (3).</p>
+                        </div>
+                        <br>
+                        <div>
+                            <h3 class="text-xl">Disposal</h3>
+                            <p class="font-thin">Garlic Mustard should not be composted (3). Pulled Plants are still able to produce seeds (3). Any plant material should be put in garbage bags or yard waste bags (3). After this they should be left in direct sunlight for a week, this will kill any plant material. After this, bags should be dried and burned or sent to landfill (3).</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <footer class="bg-black text-white font-overpass p-10">
-            <h1 class="font-bold text-2xl">Slythefox</h1>
-            <p class="text-sm text-gray-400">slythefox18.github.io</p>
+            <hr>
             <br>
+            <div class="grid">
+                <span class="m-2 p-2">
+                    <h2 class="text-xl w-fit font-bold">Image Credits</h2>
+                </span>
+                <br>
+                <ul class="list-none">
+                    <li class="flex items-center m-2 p-2">
+                        <h3>Title Image:&nbsp</h3>
+                        <p class="font-thin"><a href="https://commons.wikimedia.org/wiki/File:Alliaria_petiolata_Czosnaczek_pospolity_2020-04-24_01.jpg">Agnieszka Kwiecień, Nova</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+                    </li>
+                    <li class="flex items-center m-2 p-2">
+                        <h3>Background Information Image:&nbsp</h3>
+                        <p class="font-thin">https://www.ontarioinvasiveplants.ca/wp-content/uploads/2020/10/GarlicMustard_BMP.pdf</p>
+                    </li>
+                    <li class="flex items-center m-2 p-2">
+                        <h3>Impact Image:&nbsp</h3>
+                        <p class="font-thin"><a href="https://commons.wikimedia.org/wiki/File:Garlic_Mustard_(Alliaria_petiolata)_-_Guelph,_Ontario_2020-04-08_(02).jpg">Ryan Hodnett</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+                    </li>
+                    <li class="flex items-center m-2 p-2">
+                        <h3>Species Control Image:&nbsp</h3>
+                        <p class="font-thin"><a href="https://commons.wikimedia.org/wiki/File:Garlic_Mustard_(Alliaria_petiolata)_-_Guelph,_Ontario_2020-05-16.jpg">Ryan Hodnett</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="">
+                <h2 class="text-xl w-fit m-2 p-2 font-bold">Refrences</h2>
+                <ol class="font-thin list-decimal m-4">
+                    <li class="list-item m-2 p-2">Ontario's Invading Species Awareness Program. (n.d.).<br><a href="https://www.invadingspecies.com/invaders/plants/garlic-mustard-2/">https://www.invadingspecies.com/invaders/plants/garlic-mustard-2/</a></li>
+                    <li class="list-item m-2 p-2">Government of Ontario. (2023, January 13). Garlic Mustard | Weed identification guide for Ontario crops.Government of Ontario. <br><a href="https://www.ontario.ca/document/weed-identification-guide-ontario-crops/garlic-mustard">https://www.ontario.ca/document/weed-identification-guide-ontario-crops/garlic-mustard</a></li>
+                    <li class="list-item m-2 p-2">Invasive Species Centre. (n.d.). Garlic Mustard – Profile and Resources. Invasive Species Centre.<br><a href="https://www.invasivespeciescentre.ca/invasive-species/meet-the-species/invasive-plants/garlic-mustard/">https://www.invasivespeciescentre.ca/invasive-species/meet-the-species/invasive-plants/garlic-mustard/</a></li>
+                </ol>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="">
+                    <br>
+                    <h1 class="font-bold text-2xl">Slythefox</h1>
+                    <p class="text-sm text-gray-400">slythefox18.github.io</p>
+                </div>
+                <div class="group flex py-5 w-fit">
+                    <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18/slythefox18.github.io" target="_blank">Source Code</a>
+                    <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">code</p>
+                </div>
+            </div>
         </footer>
     </body>
 </html>
