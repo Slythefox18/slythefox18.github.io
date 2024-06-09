@@ -12,4 +12,4 @@ module.exports = {
   plugins: [],
   }
 }
-// npx tailwindcss -i ./css/style.css -o ./css/output.css --watch
+// npx tailwindcss -i ./css/style.css -o ./css/home.css --watch
