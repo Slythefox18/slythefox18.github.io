@@ -55,7 +55,35 @@
                 </div>
             </div>
         </main>
+        <footer class="font-overpass text-white p-5 m-5">
+            <div class="">
+              <br>
+              <h1 class="font-bold text-2xl">Slythefox</h1>
+              <p class="text-sm text-gray-400">slythefox18.github.io</p>
+            </div>
+            <div class="grid grid-cols-2">
+              <div class="group flex py-5 w-fit">
+                  <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18/slythefox18.github.io" target="_blank">Source Code</a>
+                  <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">code</p>
+              </div>
+              <div class="group flex py-5 w-fit cursor-pointer" id="confettiButton">
+                <p class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none">Confetti</p>
+                <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">celebration</p>
+            </div>
+            </div>
         </footer>
+        <script>
+          const confettiButton = document.getElementById('confettiButton');
+          confettiButton.addEventListener('click', launchConfetti);
+
+          function launchConfetti() {
+              confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+              });
+            }
+        </script>
         <script>
             const board = document.getElementById('board');
             const restartButton = document.getElementById('restartButton');
@@ -147,7 +175,7 @@
         
             board.addEventListener('click', handleCellClick);
             restartButton.addEventListener('click', restartGame);
-            modalCloseButton.addEventListener('click', hideModal);
+            modalCloseButton.addEventListener('click', hideModal, restartGame);
           </script>
     </body>
 </html>
