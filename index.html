@@ -1,181 +1,101 @@
 <!DOCTYPE html>
-<html class="bg-black">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Slythefox's Website</title>
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/output.css">
-        <link rel="icon" href="./images/favicon.png" type="image/x-icon">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="flex relative h-fit, items-center justify-center w-screen">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/ZB_Interregio_mit_HGe_101_bei_Niederried.jpg"; class="object-cover w-screen max-h-[500px] brightness-75">
-                <div class="bg-black/50 text-center absolute text-white font font-overpass m-5 p-5 rounded-lg">
-                    <h1 class="font-bold text-5xl leading-[1.5]">Slythefox</h1>
-                    <h2 class="">slythefox18.github.io</h2>
-                </div>
-                <div class="group">
-                    <!-- Image Credit Tooltip -->
-                    <i class="material-symbols-outlined absolute bottom-3 left-3 select-none bg-black rounded-xl hover:rounded-md text-white transition-all p-1 material-symbols-filled">info</i>
-                    <p class="absolute bottom-3 left-12 bg-black text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans duration-300">Kabelleger / David Gubler (<a href="http://www.bahnbilder.ch">http://www.bahnbilder.ch</a>), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
-                </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slythefox's Website</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/output.css">
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <style>
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure SVG is behind other content */
+        }
+    </style>
+</head>
+<body class="bg-black overflow-hidden m-0">
+    <header>
+        <div class="flex relative h-fit, items-center justify-center w-screen">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/ZB_Interregio_mit_HGe_101_bei_Niederried.jpg" class="object-cover w-screen max-h-[500px] brightness-75">
+            <div class="/50 text-center absolute text-white font font-overpass m-5 p-5 rounded-lg bg-black/50">
+                <h1 class="font-bold text-5xl leading-[1.5]">Slythefox</h1>
+                <h2 class="">slythefox18.github.io</h2>
             </div>
-        </header>
-        <main class="">
-            <div class="flex items-center justify-center bg-black p-4 m-4">
-                <div class="text-center">
-                  <h1 class="text-4xl font-bold mb-8 text-white font-overpass">Tic Tac Toe</h1>
-                  <div id="board" class="grid grid-cols-3 gap-2 mb-4">
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="0"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="1"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="2"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="3"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="4"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="5"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="6"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="7"></div>
-                    <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="8"></div>
-                  </div>
-                  <button id="restartButton" class="bg-blue-800 text-white py-2 px-4 rounded font-overpass font-bold">Restart</button>
-                  <p id="status" class="mt-4 text-xl">Player X's turn</p>
-                </div>
-                <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center invisible">
-                  <div class="bg-gray-700 rounded-lg p-8 text-center shadow-lg text-white font-overpass font-bold">
-                    <h2 id="modalMessage" class="text-2xl mb-4"></h2>
-                    <button id="modalCloseButton" class="bg-blue-800 text-white py-2 px-4 rounded">Close</button>
-                  </div>
-                </div>
+            <div class="group">
+                <!-- Image Credit Tooltip -->
+                <i class="material-symbols-outlined absolute bottom-3 left-3 select-none  rounded-xl hover:rounded-md text-white transition-all p-1 material-symbols-filled bg-black">info</i>
+                <p class="absolute bottom-3 left-12 text-white rounded-md max-w-[75%] scale-0 group-hover:scale-100 transition-all p-1 font-sans duration-300 bg-black">Kabelleger / David Gubler (<a href="http://www.bahnbilder.ch">http://www.bahnbilder.ch</a>), CC BY-SA 3.0 <a href="https://creativecommons.org/licenses/by-sa/3.0">https://creativecommons.org/licenses/by-sa/3.0</a>, via Wikimedia Commons</p>
             </div>
-        </main>
-        <footer class="font-overpass text-white p-5 m-5">
-            <div class="">
-              <br>
-              <h1 class="font-bold text-2xl">Slythefox</h1>
-              <p class="text-sm text-gray-400">slythefox18.github.io</p>
-            </div>
-            <div class="grid grid-cols-2">
-              <div class="group flex py-5 w-fit">
-                  <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18/slythefox18.github.io" target="_blank">Source Code</a>
-                  <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">code</p>
+        </div>
+    </header>
+    <main class="">
+        <div class="flex items-center justify-center  p-4 m-4">
+            <div class="text-center">
+              <h1 class="text-4xl font-bold mb-8 text-white font-overpass">Tic Tac Toe</h1>
+              <div id="board" class="grid grid-cols-3 gap-2 mb-4">
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="0"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="1"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="2"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="3"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="4"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="5"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="6"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="7"></div>
+                <div class="cell w-24 h-24 bg-gray-800 border-2 rounded-md border-gray-400 flex items-center justify-center text-6xl cursor-pointer text-white" data-cell-index="8"></div>
               </div>
-              <div class="group flex py-5 w-fit cursor-pointer" id="confettiButton">
-                <p class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none">Confetti</p>
-                <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">celebration</p>
+              <button id="restartButton" class="bg-blue-800 text-white py-2 px-4 rounded font-overpass font-bold">Restart</button>
+              <p id="status" class="mt-4 text-xl text-white font-overpass font-bold">Player X's turn</p>
             </div>
+            <div id="modal" class="fixed inset-0  bg-opacity-50 flex items-center justify-center invisible">
+              <div class="bg-gray-700 rounded-lg p-8 text-center shadow-lg text-white font-overpass font-bold">
+                <h2 id="modalMessage" class="text-2xl mb-4 text"></h2>
+                <button id="modalCloseButton" class="bg-blue-800 text-white py-2 px-4 rounded">Close</button>
+              </div>
             </div>
-        </footer>
-        <script>
-          const confettiButton = document.getElementById('confettiButton');
-          confettiButton.addEventListener('click', launchConfetti);
+        </div>
+    </main>
+    <footer class="font-overpass text-white p-5 m-5">
+        <div class="">
+          <br>
+          <h1 class="font-bold text-2xl">Slythefox</h1>
+          <p class="text-sm text-gray-400">slythefox18.github.io</p>
+        </div>
+        <div class="grid grid-cols-2">
+          <div class="group flex py-5 w-fit">
+              <a class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none" href="https://github.com/Slythefox18/slythefox18.github.io" target="_blank">Source Code</a>
+              <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">code</p>
+          </div>
+          <div class="group flex py-5 w-fit cursor-pointer" id="confettiButton">
+            <p class="relative group-hover:translate-x-10 transition-all z-10 duration-300 select-none">Confetti</p>
+            <p class="absolute material-symbols-outlined scale-0 group-hover:scale-100 text-white transition-all z-0 select-none">celebration</p>
+        </div>
+        </div>
+    </footer>
+    <script>
+      const confettiButton = document.getElementById('confettiButton');
+      confettiButton.addEventListener('click', launchConfetti);
 
-          function launchConfetti() {
-              confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-              });
-            }
-        </script>
-        <script>
-            const board = document.getElementById('board');
-            const restartButton = document.getElementById('restartButton');
-            const status = document.getElementById('status');
-            const modal = document.getElementById('modal');
-            const modalMessage = document.getElementById('modalMessage');
-            const modalCloseButton = document.getElementById('modalCloseButton');
-        
-            let currentPlayer = 'X';
-            let gameState = ['', '', '', '', '', '', '', '', ''];
-            let gameActive = true;
-        
-            const winningConditions = [
-              [0, 1, 2],
-              [3, 4, 5],
-              [6, 7, 8],
-              [0, 3, 6],
-              [1, 4, 7],
-              [2, 5, 8],
-              [0, 4, 8],
-              [2, 4, 6]
-            ];
-        
-            function handleCellClick(clickedCellEvent) {
-              const clickedCell = clickedCellEvent.target;
-              const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
-        
-              if (gameState[clickedCellIndex] !== '' || !gameActive) {
-                return;
-              }
-        
-              gameState[clickedCellIndex] = currentPlayer;
-              clickedCell.innerHTML = currentPlayer === 'X' ? '<i class="fas fa-times"></i>' : '<i class="far fa-circle"></i>';
-        
-              if (checkWin()) {
-                setTimeout(() => {
-                  showModal(`Player ${currentPlayer} has won!`);
-                  launchConfetti();
-                }, 100);
-                gameActive = false;
-                return;
-              }
-        
-              if (!gameState.includes('')) {
-                setTimeout(() => {
-                  showModal("It's a draw!");
-                }, 100);
-                gameActive = false;
-                return;
-              }
-        
-              currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-              status.innerHTML = `Player ${currentPlayer}'s turn`;
-            }
-        
-            function checkWin() {
-              return winningConditions.some((condition) => {
-                return condition.every((index) => {
-                  return gameState[index] === currentPlayer;
-                });
-              });
-            }
-        
-            function restartGame() {
-              currentPlayer = 'X';
-              gameState = ['', '', '', '', '', '', '', '', ''];
-              gameActive = true;
-              status.innerHTML = `Player ${currentPlayer}'s turn`;
-              document.querySelectorAll('.cell').forEach((cell) => (cell.innerHTML = ''));
-              hideModal();
-            }
-        
-            function showModal(message) {
-              modalMessage.innerHTML = message;
-              modal.classList.remove('invisible');
-            }
-        
-            function hideModal() {
-              modal.classList.add('invisible');
-            }
-        
-            function launchConfetti() {
-              confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-              });
-            }
-        
-            board.addEventListener('click', handleCellClick);
-            restartButton.addEventListener('click', restartGame);
-            modalCloseButton.addEventListener('click', hideModal, restartGame);
-          </script>
-    </body>
+      function launchConfetti() {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+      }
+    </script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="ticTacToe.js"></script>
+    <script src="contourLines.js"></script>
+</body>
 </html>
