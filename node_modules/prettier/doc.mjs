@@ -468,7 +468,7 @@ function willBreak(doc) {
 function breakParentGroup(groupStack) {
   if (groupStack.length > 0) {
     const parentGroup = at_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       groupStack,
       -1
@@ -525,12 +525,12 @@ function removeLines(doc) {
 function stripTrailingHardlineFromParts(parts) {
   parts = [...parts];
   while (parts.length >= 2 && at_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     parts,
     -2
   ).type === DOC_TYPE_LINE && at_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     parts,
     -1
@@ -539,7 +539,7 @@ function stripTrailingHardlineFromParts(parts) {
   }
   if (parts.length > 0) {
     const lastPart = stripTrailingHardlineFromDoc(at_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       parts,
       -1
@@ -627,7 +627,7 @@ function cleanDocFn(doc) {
         }
         const [currentPart, ...restParts] = Array.isArray(part) ? part : [part];
         if (typeof currentPart === "string" && typeof at_default(
-          /* isOptionalObject*/
+          /* isOptionalObject */
           false,
           parts,
           -1
@@ -867,7 +867,7 @@ function fits(next, restCommands, width, hasLineSuffix, groupModeMap, mustBeFlat
         }
         const groupMode = doc.break ? MODE_BREAK : mode;
         const contents = doc.expandedStates && groupMode === MODE_BREAK ? at_default(
-          /* isOptionalObject*/
+          /* isOptionalObject */
           false,
           doc.expandedStates,
           -1
@@ -934,7 +934,7 @@ function printDocToString(doc, options) {
     switch (get_doc_type_default(doc2)) {
       case DOC_TYPE_STRING: {
         const formatted = newLine !== "\n" ? string_replace_all_default(
-          /* isOptionalObject*/
+          /* isOptionalObject */
           false,
           doc2,
           "\n",
@@ -1004,7 +1004,7 @@ function printDocToString(doc, options) {
             } else {
               if (doc2.expandedStates) {
                 const mostExpanded = at_default(
-                  /* isOptionalObject*/
+                  /* isOptionalObject */
                   false,
                   doc2.expandedStates,
                   -1
@@ -1052,7 +1052,7 @@ function printDocToString(doc, options) {
         }
         if (doc2.id) {
           groupModeMap[doc2.id] = at_default(
-            /* isOptionalObject*/
+            /* isOptionalObject */
             false,
             cmds,
             -1

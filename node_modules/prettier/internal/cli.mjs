@@ -1739,7 +1739,7 @@ var preserveCamelCase = (string, toLowerCase, toUpperCase, preserveConsecutiveUp
 var preserveConsecutiveUppercase = (input, toLowerCase) => {
   LEADING_CAPITAL.lastIndex = 0;
   return string_replace_all_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     input,
     LEADING_CAPITAL,
@@ -1750,10 +1750,10 @@ var postProcess = (input, toUpperCase) => {
   SEPARATORS_AND_IDENTIFIER.lastIndex = 0;
   NUMBERS_AND_IDENTIFIER.lastIndex = 0;
   return string_replace_all_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     string_replace_all_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       input,
       NUMBERS_AND_IDENTIFIER,
@@ -1862,7 +1862,7 @@ function isJson(value) {
   }
 }
 var normalizeToPosix = path.sep === "\\" ? (filepath) => string_replace_all_default(
-  /* isOptionalObject*/
+  /* isOptionalObject */
   false,
   filepath,
   "\\",
@@ -2570,7 +2570,7 @@ var Context = class {
   popContextPlugins() {
     __privateGet(this, _stack).pop();
     Object.assign(this, at_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       __privateGet(this, _stack),
       -1
@@ -2786,14 +2786,14 @@ function sortPaths(paths) {
 }
 function escapePathForGlob(path10) {
   return string_replace_all_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     string_replace_all_default(
-      /* isOptionalObject*/
+      /* isOptionalObject */
       false,
       fastGlob.escapePath(
         string_replace_all_default(
-          /* isOptionalObject*/
+          /* isOptionalObject */
           false,
           path10,
           "\\",
@@ -3616,7 +3616,7 @@ function createLogger(logLevel = "log") {
         ...options
       };
       message = string_replace_all_default(
-        /* isOptionalObject*/
+        /* isOptionalObject */
         false,
         message,
         /^/gm,
@@ -3685,7 +3685,7 @@ var CHOICE_USAGE_MARGIN = 3;
 var CHOICE_USAGE_INDENTATION = 2;
 function indent(str, spaces) {
   return string_replace_all_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     str,
     /^/gm,
@@ -3716,7 +3716,7 @@ function createOptionUsageRow(header, content, threshold) {
   const separator = header.length >= threshold ? `
 ${" ".repeat(threshold)}` : " ".repeat(threshold - header.length);
   const description = string_replace_all_default(
-    /* isOptionalObject*/
+    /* isOptionalObject */
     false,
     content,
     "\n",

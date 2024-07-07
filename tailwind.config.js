@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     "./index.html",
-    "./garlicmustard.html"
+    "./garlicmustard.html",
+    "./weather/weather.html",
   ],
   theme: {
     extend: {
