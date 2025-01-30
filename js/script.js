@@ -77,6 +77,9 @@ async function getStopTimes(route, stopNum) {
 
 async function displayTimes(route, stop, section) {
   let times = await getStopTimes(route, stop);
+  times = times.sort(function (a, b) {
+    return a - b;
+  });
   times = times.map((time) => time.toString() + "m");
   document.getElementById(section).innerHTML = times.join(", ");
 }
