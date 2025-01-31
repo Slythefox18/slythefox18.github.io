@@ -120,14 +120,12 @@ async function loadFinchOverview() {
     107: times.yorkU,
   };
   for (let [route, timeArray] of Object.entries(sectorOneFinch)) {
-    timeArray = timeArray.sort(function (a, b) {
+    timeArray.sort(function (a, b) {
+      a = parseInt(a);
+      b = parseInt(b);
       return a - b;
     });
-    if (
-      timeArray &&
-      timeArray.length > 0 &&
-      timeArray[0] < minTimeFinchSectorOne
-    ) {
+    if (timeArray[0] < minTimeFinchSectorOne) {
       minTimeFinchSectorOne = timeArray[0];
       minRouteFinchSectorOne = route;
     }
@@ -135,13 +133,13 @@ async function loadFinchOverview() {
 
   let minTimeFinchSectorTwo = times.finch.findIndex(function (time) {
     if (minRouteFinchSectorOne === "105") {
-      return time > 11;
+      return time > 11 + parseInt(minTimeFinchSectorOne);
     }
     if (minRouteFinchSectorOne === "104") {
-      return time > 14;
+      return time > 14 + parseInt(minTimeFinchSectorOne);
     }
     if (minRouteFinchSectorOne === "107") {
-      return time > 9;
+      return time > 9 + parseInt(minTimeFinchSectorOne);
     }
   });
   let minRouteFinchSectorTwo = "36";
@@ -149,13 +147,16 @@ async function loadFinchOverview() {
   minTimeFinchSectorTwo = times.finch[minTimeFinchSectorTwo];
   switch (minRouteFinchSectorOne) {
     case "105":
-      minTimeFinchSectorTwo = parseInt(minTimeFinchSectorTwo) - 11;
+      minTimeFinchSectorTwo =
+        parseInt(minTimeFinchSectorTwo) - 11 - parseInt(minTimeFinchSectorOne);
       break;
     case "104":
-      minTimeFinchSectorTwo = parseInt(minTimeFinchSectorTwo) - 14;
+      minTimeFinchSectorTwo =
+        parseInt(minTimeFinchSectorTwo) - 14 - parseInt(minTimeFinchSectorOne);
       break;
     case "107":
-      minTimeFinchSectorTwo = parseInt(minTimeFinchSectorTwo) - 9;
+      minTimeFinchSectorTwo =
+        parseInt(minTimeFinchSectorTwo) - 9 - parseInt(minTimeFinchSectorOne);
       break;
   }
 
@@ -192,6 +193,8 @@ async function loadSenlacOverview() {
 
   for (let [route, timeArray] of Object.entries(sectorOneSenlac)) {
     timeArray = timeArray.sort(function (a, b) {
+      a = parseInt(a);
+      b = parseInt(b);
       return a - b;
     });
     if (
@@ -205,7 +208,8 @@ async function loadSenlacOverview() {
   }
 
   minTimeSenlacSectorTwo = times.senlac[minTimeSenlacSectorTwo];
-  minTimeSenlacSectorTwo = parseInt(minTimeSenlacSectorTwo) - 14;
+  minTimeSenlacSectorTwo =
+    parseInt(minTimeSenlacSectorTwo) - 14 - parseInt(minTimeSenlacSectorOne);
 
   document.getElementById(
     "overviewSenlacPath"
