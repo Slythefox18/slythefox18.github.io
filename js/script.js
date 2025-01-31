@@ -219,7 +219,15 @@ async function loadFinchOverview() {
   }m`;
   document.getElementById(
     "overviewFinchSplit"
-  ).innerHTML = `Split Times: ${minTimeFinchSectorOne}m + ${minTimeFinchSectorTwo}m`;
+  ).innerHTML = `Split Times: ${minTimeFinchSectorOne}m + ${getTravelTime(
+    minRouteFinchSectorOne
+  )} + ${minTimeFinchSectorTwo}m + 9m`;
+  document.getElementById("overviewFinchTotalTime").innerHTML = `Route Time: ${
+    parseInt(minTimeFinchSectorOne) +
+    getTravelTime(minRouteFinchSectorOne) +
+    parseInt(minTimeFinchSectorTwo) +
+    9
+  }m`;
 }
 
 async function loadSenlacOverview() {
@@ -268,17 +276,22 @@ async function loadSenlacOverview() {
   }m`;
   document.getElementById(
     "overviewSenlacSplit"
-  ).innerHTML = `Split Times: ${minTimeSenlacSectorOne}m + ${minTimeSenlacSectorTwo}m`;
+  ).innerHTML = `Split Times: ${minTimeSenlacSectorOne}m + 14m + ${minTimeSenlacSectorTwo}m + 4m`;
+  document.getElementById("overviewSenlacTotalTime").innerHTML = `Route Time: ${
+    parseInt(minTimeSenlacSectorOne) + 14 + parseInt(minTimeSenlacSectorTwo) + 4
+  }m`;
 }
 
 function clearSenlacOverview() {
   document.getElementById("overviewSenlacPath").innerHTML = `Loading...`;
-  document.getElementById("overviewSenlacTime").innerHTML = `Loading...`;
-  document.getElementById("overviewSenlacSplit").innerHTML = `Loading...`;
+  document.getElementById("overviewSenlacTime").innerHTML = ``;
+  document.getElementById("overviewSenlacSplit").innerHTML = ``;
+  document.getElementById("overviewSenlacTotalTime").innerHTML = ``;
 }
 
 function clearFinchOverview(params) {
   document.getElementById("overviewFinchPath").innerHTML = `Loading...`;
-  document.getElementById("overviewFinchTime").innerHTML = `Loading...`;
-  document.getElementById("overviewFinchSplit").innerHTML = `Loading...`;
+  document.getElementById("overviewFinchTime").innerHTML = ``;
+  document.getElementById("overviewFinchSplit").innerHTML = ``;
+  document.getElementById("overviewFinchTotalTime").innerHTML = ``;
 }
