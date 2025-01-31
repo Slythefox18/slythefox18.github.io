@@ -32,16 +32,43 @@ function loadTimes() {
 }
 
 async function getStopId(route, stopNum) {
-  try {
-    const response = await fetch(
-      `https://webservices.nextbus.com/service/publicJSONFeed?command=routeConfig&a=ttc&r=${route}`
-    );
-    const data = await response.json();
-    const stop = data.route.stop.find((s) => s.stopId === stopNum);
-    return stop ? stop.tag : null;
-  } catch (error) {
-    console.error(error);
-    return null;
+  switch (stopNum) {
+    case "14652":
+      return "14174";
+      break;
+    case "7108":
+      return "6481";
+      break;
+    case "14654":
+      return "14175";
+      break;
+    case "7275":
+      return "2365";
+      break;
+    case "14653":
+      return "14619";
+      break;
+    case "14651":
+      return "14173";
+      break;
+    case "3587":
+      return "623";
+      break;
+
+    default:
+      try {
+        const response = await fetch(
+          `https://webservices.nextbus.com/service/publicJSONFeed?command=routeConfig&a=ttc&r=${route}`
+        );
+        const data = await response.json();
+        const stop = data.route.stop.find((s) => s.stopId === stopNum);
+        console.log("StopNum: " + stopNum + "StopTag: " + stop.tag);
+        return stop ? stop.tag : null;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+      break;
   }
 }
 
@@ -96,13 +123,13 @@ function clearTime(section) {
 }
 
 /*
-Distances
+  Distances
 
-84 to Senlac: 14
-107 to Finch: 8
-105 to Finch: 9
-104 to Finch: 12
-*/
+  84 to Senlac: 14m
+  107 to Finch: 8m
+  105 to Finch: 9m
+  104 to Finch: 12m
+  */
 
 async function loadFinchOverview() {
   const times = {
@@ -119,19 +146,35 @@ async function loadFinchOverview() {
     104: times.faywood,
     107: times.yorkU,
   };
+
   for (let [route, timeArray] of Object.entries(sectorOneFinch)) {
-    timeArray.sort(function (a, b) {
-      a = parseInt(a);
-      b = parseInt(b);
-      return a - b;
-    });
-    if (timeArray[0] < minTimeFinchSectorOne) {
-      minTimeFinchSectorOne = timeArray[0];
+    timeArray = timeArray.map(Number).sort((a, b) => a - b);
+    if (
+      timeArray &&
+      timeArray.length > 0 &&
+      parseInt(timeArray[0]) + getTravelTime(route) < minTimeFinchSectorOne
+    ) {
+      minTimeFinchSectorOne = parseInt(timeArray[0]) + getTravelTime(route);
       minRouteFinchSectorOne = route;
     }
   }
 
-  let minTimeFinchSectorTwo = times.finch.findIndex(function (time) {
+  minTimeFinchSectorOne -= getTravelTime(minRouteFinchSectorOne);
+
+  function getTravelTime(route) {
+    switch (route) {
+      case "105":
+        return 11;
+      case "104":
+        return 14;
+      case "107":
+        return 9;
+      default:
+        return 0;
+    }
+  }
+
+  let minTimeFinchSectorTwoIndex = times.finch.findIndex(function (time) {
     if (minRouteFinchSectorOne === "105") {
       return time > 11 + parseInt(minTimeFinchSectorOne);
     }
@@ -144,20 +187,28 @@ async function loadFinchOverview() {
   });
   let minRouteFinchSectorTwo = "36";
 
-  minTimeFinchSectorTwo = times.finch[minTimeFinchSectorTwo];
-  switch (minRouteFinchSectorOne) {
-    case "105":
-      minTimeFinchSectorTwo =
-        parseInt(minTimeFinchSectorTwo) - 11 - parseInt(minTimeFinchSectorOne);
-      break;
-    case "104":
-      minTimeFinchSectorTwo =
-        parseInt(minTimeFinchSectorTwo) - 14 - parseInt(minTimeFinchSectorOne);
-      break;
-    case "107":
-      minTimeFinchSectorTwo =
-        parseInt(minTimeFinchSectorTwo) - 9 - parseInt(minTimeFinchSectorOne);
-      break;
+  let minTimeFinchSectorTwo = times.finch[minTimeFinchSectorTwoIndex];
+  if (minTimeFinchSectorTwo !== undefined) {
+    switch (minRouteFinchSectorOne) {
+      case "105":
+        minTimeFinchSectorTwo =
+          parseInt(minTimeFinchSectorTwo) -
+          11 -
+          parseInt(minTimeFinchSectorOne);
+        break;
+      case "104":
+        minTimeFinchSectorTwo =
+          parseInt(minTimeFinchSectorTwo) -
+          14 -
+          parseInt(minTimeFinchSectorOne);
+        break;
+      case "107":
+        minTimeFinchSectorTwo =
+          parseInt(minTimeFinchSectorTwo) - 9 - parseInt(minTimeFinchSectorOne);
+        break;
+    }
+  } else {
+    minTimeFinchSectorTwo = 0;
   }
 
   document.getElementById(
@@ -183,18 +234,11 @@ async function loadSenlacOverview() {
     984: times.sheppardExpress,
   };
 
-  let minTimeSenlacSectorTwo = times.senlac.findIndex(function (time) {
-    return time > 16;
-  });
-  let minRouteSenlacSectorTwo = "98";
-
   let minRouteSenlacSectorOne = null;
   let minTimeSenlacSectorOne = Infinity;
 
   for (let [route, timeArray] of Object.entries(sectorOneSenlac)) {
     timeArray = timeArray.sort(function (a, b) {
-      a = parseInt(a);
-      b = parseInt(b);
       return a - b;
     });
     if (
@@ -206,6 +250,11 @@ async function loadSenlacOverview() {
       minRouteSenlacSectorOne = route;
     }
   }
+
+  let minTimeSenlacSectorTwo = times.senlac.findIndex(function (time) {
+    return time > 16 + parseInt(minTimeSenlacSectorOne);
+  });
+  let minRouteSenlacSectorTwo = "98";
 
   minTimeSenlacSectorTwo = times.senlac[minTimeSenlacSectorTwo];
   minTimeSenlacSectorTwo =
