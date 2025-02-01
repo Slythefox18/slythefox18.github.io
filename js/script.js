@@ -83,23 +83,25 @@ async function getStopTimes(route, stopNum) {
       `https://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&r=${route}&s=${stopTag}`
     );
     const results = await response.json();
-    if (Array.isArray(results.predictions.direction)) {
-      results.predictions.direction.forEach((d) => {
-        if (Array.isArray(d.prediction)) {
-          d.prediction.forEach((p) => {
-            output.push(p.minutes);
-          });
-        } else {
-          output.push(d.prediction.minutes);
-        }
-      });
-    } else {
-      if (Array.isArray(results.predictions.direction.prediction)) {
-        results.predictions.direction.prediction.forEach((p) => {
-          output.push(p.minutes);
+    if (results.predictions && results.predictions.direction) {
+      if (Array.isArray(results.predictions.direction)) {
+        results.predictions.direction.forEach((d) => {
+          if (Array.isArray(d.prediction)) {
+            d.prediction.forEach((p) => {
+              output.push(p.minutes);
+            });
+          } else if (d.prediction) {
+            output.push(d.prediction.minutes);
+          }
         });
       } else {
-        output.push(results.predictions.direction.prediction.minutes);
+        if (Array.isArray(results.predictions.direction.prediction)) {
+          results.predictions.direction.prediction.forEach((p) => {
+            output.push(p.minutes);
+          });
+        } else if (results.predictions.direction.prediction) {
+          output.push(results.predictions.direction.prediction.minutes);
+        }
       }
     }
     return output;
@@ -115,7 +117,11 @@ async function displayTimes(route, stop, section) {
     return a - b;
   });
   times = times.map((time) => time.toString() + "m");
-  document.getElementById(section).innerHTML = times.join(", ");
+  if (times.length > 0) {
+    document.getElementById(section).innerHTML = times.join(", ");
+  } else {
+    document.getElementById(section).innerHTML = "No times";
+  }
 }
 
 function clearTime(section) {
@@ -148,14 +154,15 @@ async function loadFinchOverview() {
   };
 
   for (let [route, timeArray] of Object.entries(sectorOneFinch)) {
-    timeArray = timeArray.map(Number).sort((a, b) => a - b);
-    if (
-      timeArray &&
-      timeArray.length > 0 &&
-      parseInt(timeArray[0]) + getTravelTime(route) < minTimeFinchSectorOne
-    ) {
-      minTimeFinchSectorOne = parseInt(timeArray[0]) + getTravelTime(route);
-      minRouteFinchSectorOne = route;
+    if (timeArray) {
+      timeArray = timeArray.map(Number).sort((a, b) => a - b);
+      if (
+        timeArray.length > 0 &&
+        parseInt(timeArray[0]) + getTravelTime(route) < minTimeFinchSectorOne
+      ) {
+        minTimeFinchSectorOne = parseInt(timeArray[0]) + getTravelTime(route);
+        minRouteFinchSectorOne = route;
+      }
     }
   }
 
@@ -211,23 +218,39 @@ async function loadFinchOverview() {
     minTimeFinchSectorTwo = 0;
   }
 
-  document.getElementById(
-    "overviewFinchPath"
-  ).innerHTML = `Best Route: ${minRouteFinchSectorOne} + ${minRouteFinchSectorTwo}`;
-  document.getElementById("overviewFinchTime").innerHTML = `Wait Time: ${
-    parseInt(minTimeFinchSectorOne) + parseInt(minTimeFinchSectorTwo)
-  }m`;
-  document.getElementById(
-    "overviewFinchSplit"
-  ).innerHTML = `Split Times: ${minTimeFinchSectorOne}m + ${getTravelTime(
-    minRouteFinchSectorOne
-  )} + ${minTimeFinchSectorTwo}m + 9m`;
-  document.getElementById("overviewFinchTotalTime").innerHTML = `Route Time: ${
-    parseInt(minTimeFinchSectorOne) +
-    getTravelTime(minRouteFinchSectorOne) +
-    parseInt(minTimeFinchSectorTwo) +
-    9
-  }m`;
+  const isValid = (value) =>
+    value !== undefined && value !== null && !isNaN(value);
+
+  if (
+    isValid(minRouteFinchSectorOne) &&
+    isValid(minTimeFinchSectorOne) &&
+    isValid(minTimeFinchSectorTwo)
+  ) {
+    document.getElementById(
+      "overviewFinchPath"
+    ).innerHTML = `Best Route: ${minRouteFinchSectorOne} + ${minRouteFinchSectorTwo}`;
+    document.getElementById("overviewFinchTime").innerHTML = `Wait Time: ${
+      parseInt(minTimeFinchSectorOne) + parseInt(minTimeFinchSectorTwo)
+    }m`;
+    document.getElementById(
+      "overviewFinchSplit"
+    ).innerHTML = `Split Times: ${minTimeFinchSectorOne}m + ${getTravelTime(
+      minRouteFinchSectorOne
+    )} + ${minTimeFinchSectorTwo}m + 9m`;
+    document.getElementById(
+      "overviewFinchTotalTime"
+    ).innerHTML = `Route Time: ${
+      parseInt(minTimeFinchSectorOne) +
+      getTravelTime(minRouteFinchSectorOne) +
+      parseInt(minTimeFinchSectorTwo) +
+      9
+    }m`;
+  } else {
+    document.getElementById("overviewFinchPath").innerHTML = "Not available";
+    document.getElementById("overviewFinchTime").innerHTML = ``;
+    document.getElementById("overviewFinchSplit").innerHTML = ``;
+    document.getElementById("overviewFinchTotalTime").innerHTML = ``;
+  }
 }
 
 async function loadSenlacOverview() {
@@ -238,7 +261,7 @@ async function loadSenlacOverview() {
   };
 
   const sectorOneSenlac = {
-    84: times.sheppardExpress,
+    84: times.sheppard,
     984: times.sheppardExpress,
   };
 
@@ -246,16 +269,14 @@ async function loadSenlacOverview() {
   let minTimeSenlacSectorOne = Infinity;
 
   for (let [route, timeArray] of Object.entries(sectorOneSenlac)) {
-    timeArray = timeArray.sort(function (a, b) {
-      return a - b;
-    });
-    if (
-      timeArray &&
-      timeArray.length > 0 &&
-      timeArray[0] < minTimeSenlacSectorOne
-    ) {
-      minTimeSenlacSectorOne = timeArray[0];
-      minRouteSenlacSectorOne = route;
+    if (timeArray.length > 0) {
+      timeArray = timeArray.sort(function (a, b) {
+        return a - b;
+      });
+      if (timeArray[0] < minTimeSenlacSectorOne) {
+        minTimeSenlacSectorOne = timeArray[0];
+        minRouteSenlacSectorOne = route;
+      }
     }
   }
 
@@ -268,18 +289,33 @@ async function loadSenlacOverview() {
   minTimeSenlacSectorTwo =
     parseInt(minTimeSenlacSectorTwo) - 14 - parseInt(minTimeSenlacSectorOne);
 
-  document.getElementById(
-    "overviewSenlacPath"
-  ).innerHTML = `Best Route: ${minRouteSenlacSectorOne} + ${minRouteSenlacSectorTwo}`;
-  document.getElementById("overviewSenlacTime").innerHTML = `Wait Time: ${
-    parseInt(minTimeSenlacSectorOne) + parseInt(minTimeSenlacSectorTwo)
-  }m`;
-  document.getElementById(
-    "overviewSenlacSplit"
-  ).innerHTML = `Split Times: ${minTimeSenlacSectorOne}m + 14m + ${minTimeSenlacSectorTwo}m + 4m`;
-  document.getElementById("overviewSenlacTotalTime").innerHTML = `Route Time: ${
-    parseInt(minTimeSenlacSectorOne) + 14 + parseInt(minTimeSenlacSectorTwo) + 4
-  }m`;
+  const isValid = (value) =>
+    value !== undefined && value !== null && !isNaN(value);
+
+  if (isValid(minRouteSenlacSectorOne) && isValid(minRouteSenlacSectorTwo)) {
+    document.getElementById(
+      "overviewSenlacPath"
+    ).innerHTML = `Best Route: ${minRouteSenlacSectorOne} + ${minRouteSenlacSectorTwo}`;
+    document.getElementById("overviewSenlacTime").innerHTML = `Wait Time: ${
+      parseInt(minTimeSenlacSectorOne) + parseInt(minTimeSenlacSectorTwo)
+    }m`;
+    document.getElementById(
+      "overviewSenlacSplit"
+    ).innerHTML = `Split Times: ${minTimeSenlacSectorOne}m + 14m + ${minTimeSenlacSectorTwo}m + 4m`;
+    document.getElementById(
+      "overviewSenlacTotalTime"
+    ).innerHTML = `Route Time: ${
+      parseInt(minTimeSenlacSectorOne) +
+      14 +
+      parseInt(minTimeSenlacSectorTwo) +
+      4
+    }m`;
+  } else {
+    document.getElementById("overviewSenlacPath").innerHTML = "Not available";
+    document.getElementById("overviewSenlacTime").innerHTML = ``;
+    document.getElementById("overviewSenlacSplit").innerHTML = ``;
+    document.getElementById("overviewSenlacTotalTime").innerHTML = ``;
+  }
 }
 
 function clearSenlacOverview() {
