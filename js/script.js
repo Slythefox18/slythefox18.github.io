@@ -236,7 +236,7 @@ async function loadFinchOverview() {
       "overviewFinchSplit"
     ).innerHTML = `Split Times: ${minTimeFinchSectorOne}m + ${getTravelTime(
       minRouteFinchSectorOne
-    )} + ${minTimeFinchSectorTwo}m + 9m`;
+    )}m + ${minTimeFinchSectorTwo}m + 9m`;
     document.getElementById(
       "overviewFinchTotalTime"
     ).innerHTML = `Route Time: ${
