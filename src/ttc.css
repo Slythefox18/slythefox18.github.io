@@ -2,7 +2,7 @@
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 body {
-  background-color: black;
+  background-color: #000;
   margin: 20px;
   padding: 20px;
   font-family: "Trebuchet MS", sans-serif;
@@ -20,13 +20,13 @@ body {
   font-family: "Trebuchet MS", sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
-  color: white;
+  color: #fff;
 }
 .header .refresh {
   text-align: end;
 }
 .refresh-icon {
-  color: white;
+  color: #fff;
   height: fit-content;
   vertical-align: middle;
   cursor: pointer;
@@ -35,9 +35,9 @@ body {
   padding: 0.5rem;
 }
 .section-title {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 2rem;
-  color: white;
+  color: #fff;
   margin-bottom: 0.5rem;
   margin-top: 1rem;
 }
@@ -49,7 +49,7 @@ body {
   grid-auto-flow: row;
   gap: 1rem;
   font-size: 1.5rem;
-  color: white;
+  color: #fff;
   max-width: 100%;
 }
 .card {
@@ -58,7 +58,7 @@ body {
   padding: 1rem;
 }
 .card h3 {
-  font-weight: bold;
+  font-weight: 700;
   margin: 0.3rem;
 }
 .card p {

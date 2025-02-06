@@ -56,6 +56,14 @@ async function getStopTimes(e, n) {
       ),
       r = await n.json();
     return (
+      "107" === e &&
+        (r.predictions.direction = r.predictions.direction.filter((e) =>
+          Array.isArray(e.prediction)
+            ? "107D" === e.prediction[0].branch ||
+              "107B" === e.prediction[0].branch
+            : !!e.prediction &&
+              ("107D" === e.prediction.branch || "107B" === e.prediction.branch)
+        )),
       r.predictions &&
         r.predictions.direction &&
         (Array.isArray(r.predictions.direction)
@@ -101,12 +109,12 @@ async function loadFinchOverview() {
   let n = null,
     t = 1 / 0;
   const i = { 105: e.dufferin, 104: e.faywood, 107: e.yorkU };
-  for (let [e, o] of Object.entries(i))
-    o &&
-      ((o = o.map(Number).sort((e, n) => e - n)),
-      o.length > 0 &&
-        parseInt(o[0]) + r(e) < t &&
-        ((t = parseInt(o[0]) + r(e)), (n = e)));
+  for (let [e, c] of Object.entries(i))
+    c &&
+      ((c = c.map(Number).sort((e, n) => e - n)),
+      c.length > 0 &&
+        parseInt(c[0]) + r(e) < t &&
+        ((t = parseInt(c[0]) + r(e)), (n = e)));
   function r(e) {
     switch (e) {
       case "105":
@@ -120,7 +128,7 @@ async function loadFinchOverview() {
     }
   }
   t -= r(n);
-  let o = e.finch.findIndex(function (e) {
+  let c = e.finch.findIndex(function (e) {
       return "105" === n
         ? e > 11 + parseInt(t)
         : "104" === n
@@ -129,33 +137,33 @@ async function loadFinchOverview() {
         ? e > 9 + parseInt(t)
         : void 0;
     }),
-    c = e.finch[o];
-  if (void 0 !== c)
+    o = e.finch[c];
+  if (void 0 !== o)
     switch (n) {
       case "105":
-        c = parseInt(c) - 11 - parseInt(t);
+        o = parseInt(o) - 11 - parseInt(t);
         break;
       case "104":
-        c = parseInt(c) - 14 - parseInt(t);
+        o = parseInt(o) - 14 - parseInt(t);
         break;
       case "107":
-        c = parseInt(c) - 9 - parseInt(t);
+        o = parseInt(o) - 9 - parseInt(t);
     }
-  else c = 0;
+  else o = 0;
   const a = (e) => null != e && !isNaN(e);
-  a(n) && a(t) && a(c)
+  a(n) && a(t) && a(o)
     ? ((document.getElementById(
         "overviewFinchPath"
       ).innerHTML = `Best Route: ${n} + 36`),
       (document.getElementById("overviewFinchTime").innerHTML = `Wait Time: ${
-        parseInt(t) + parseInt(c)
+        parseInt(t) + parseInt(o)
       }m`),
       (document.getElementById(
         "overviewFinchSplit"
-      ).innerHTML = `Split Times: ${t}m + ${r(n)}m + ${c}m + 9m`),
+      ).innerHTML = `Split Times: ${t}m + ${r(n)}m + ${o}m + 9m`),
       (document.getElementById(
         "overviewFinchTotalTime"
-      ).innerHTML = `Route Time: ${parseInt(t) + r(n) + parseInt(c) + 9}m`))
+      ).innerHTML = `Route Time: ${parseInt(t) + r(n) + parseInt(o) + 9}m`))
     : ((document.getElementById("overviewFinchPath").innerHTML =
         "Not available"),
       (document.getElementById("overviewFinchTime").innerHTML = ""),
@@ -181,8 +189,8 @@ async function loadSenlacOverview() {
     return e > 16 + parseInt(i);
   });
   (r = e.senlac[r]), (r = parseInt(r) - 14 - parseInt(i));
-  const o = (e) => null != e && !isNaN(e);
-  o(t) && o("98")
+  const c = (e) => null != e && !isNaN(e);
+  c(t) && c("98")
     ? ((document.getElementById(
         "overviewSenlacPath"
       ).innerHTML = `Best Route: ${t} + 98`),
