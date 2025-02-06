@@ -58,7 +58,9 @@ body {
 }
 .card h3 {
   font-weight: bold;
+  margin: 0.3rem;
 }
 .card p {
   font-weight: 300;
+  margin: 0.3rem;
 }
