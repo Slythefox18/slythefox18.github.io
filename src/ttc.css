@@ -5,19 +5,19 @@ body {
   background-color: black;
   margin: 20px;
   padding: 20px;
-  font-family: "Figtree", sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
   font-size: 3rem;
 }
 .header {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 0;
+  margin: auto;
   display: grid;
   width: 100%;
   grid-auto-flow: column;
   align-items: center;
 }
 .header h1 {
-  font-family: "Figtree", sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   color: white;
@@ -39,6 +39,7 @@ body {
   font-size: 2rem;
   color: white;
   margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 .section-title.mt-5 {
   margin-top: 1.25rem;
