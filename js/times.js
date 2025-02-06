@@ -83,6 +83,25 @@ async function getStopTimes(route, stopNum) {
       `https://webservices.nextbus.com/service/publicJSONFeed?command=predictions&a=ttc&r=${route}&s=${stopTag}`
     );
     const results = await response.json();
+    if (route === "107") {
+      results.predictions.direction = results.predictions.direction.filter(
+        (direction) => {
+          if (Array.isArray(direction.prediction)) {
+            return (
+              direction.prediction[0].branch === "107D" ||
+              direction.prediction[0].branch === "107B"
+            );
+          } else if (direction.prediction) {
+            return (
+              direction.prediction.branch === "107D" ||
+              direction.prediction.branch === "107B"
+            );
+          }
+          return false;
+        }
+      );
+    }
+
     if (results.predictions && results.predictions.direction) {
       if (Array.isArray(results.predictions.direction)) {
         results.predictions.direction.forEach((d) => {
@@ -135,7 +154,7 @@ function clearTime(section) {
   107 to Finch: 8m
   105 to Finch: 9m
   104 to Finch: 12m
-  */
+*/
 
 async function loadFinchOverview() {
   const times = {
