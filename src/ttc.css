@@ -65,3 +65,10 @@ body {
   font-weight: 300;
   margin: 0.3rem;
 }
+.timestamp {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  color: #fff;
+}

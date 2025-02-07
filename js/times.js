@@ -1,15 +1,56 @@
+let time = new Date();
+let start = Date.now();
+let calcWalkTime = true;
+const finchWalkTime = 5;
+const senlacWalkTime = 7;
+
 loadFinchOverview();
 loadSenlacOverview();
 loadTimes();
-document.getElementById("refresh").onclick = function () {
-  clearTimes();
-  loadTimes();
+refreshButton();
+timestamp();
+walkTimeToggle();
+setInterval(() => {
+  timesAge();
+}, 1);
+if (calcWalkTime) {
+  document.getElementById("walkToggle").style.backgroundColor = "#383838";
+} else {
+  document.getElementById("walkToggle").style.backgroundColor = "grey";
+}
 
-  clearFinchOverview();
-  clearSenlacOverview();
-  loadFinchOverview();
-  loadSenlacOverview();
-};
+function refreshButton() {
+  document.getElementById("refresh").onclick = function () {
+    clearTimes();
+    loadTimes();
+
+    clearFinchOverview();
+    clearSenlacOverview();
+    loadFinchOverview();
+    loadSenlacOverview();
+    resetTimestamp();
+  };
+}
+
+function walkTimeToggle() {
+  document.getElementById("walkToggle").onclick = function () {
+    calcWalkTime = !calcWalkTime;
+    if (calcWalkTime) {
+      document.getElementById("walkToggle").style.backgroundColor = "#383838";
+    } else {
+      document.getElementById("walkToggle").style.backgroundColor = "grey";
+    }
+
+    clearTimes();
+    loadTimes();
+
+    clearFinchOverview();
+    clearSenlacOverview();
+    loadFinchOverview();
+    loadSenlacOverview();
+    resetTimestamp();
+  };
+}
 
 function clearTimes() {
   clearTime("senlac");
@@ -23,7 +64,7 @@ function clearTimes() {
 
 function loadTimes() {
   displayTimes("98", "7108", "senlac");
-  displayTimes("105", "14652", "dufferin");
+  displayTimes("105", "3172", "dufferin");
   displayTimes("104", "14653", "faywood");
   displayTimes("107", "7275", "yorkU");
   displayTimes("84", "14651", "sheppard");
@@ -53,6 +94,9 @@ async function getStopId(route, stopNum) {
       break;
     case "3587":
       return "623";
+      break;
+    case "3172":
+      return "8170";
       break;
 
     default:
@@ -174,12 +218,16 @@ async function loadFinchOverview() {
 
   for (let [route, timeArray] of Object.entries(sectorOneFinch)) {
     if (timeArray) {
-      timeArray = timeArray.map(Number).sort((a, b) => a - b);
+      timeArray = timeArray.map(Number);
+      if (calcWalkTime) {
+        timeArray = timeArray.filter((time) => time > finchWalkTime);
+      }
+      timeArray = timeArray.sort((a, b) => a - b);
       if (
         timeArray.length > 0 &&
-        parseInt(timeArray[0]) + getTravelTime(route) < minTimeFinchSectorOne
+        timeArray[0] + getTravelTime(route) < minTimeFinchSectorOne
       ) {
-        minTimeFinchSectorOne = parseInt(timeArray[0]) + getTravelTime(route);
+        minTimeFinchSectorOne = timeArray[0] + getTravelTime(route);
         minRouteFinchSectorOne = route;
       }
     }
@@ -289,12 +337,17 @@ async function loadSenlacOverview() {
 
   for (let [route, timeArray] of Object.entries(sectorOneSenlac)) {
     if (timeArray.length > 0) {
-      timeArray = timeArray.sort(function (a, b) {
-        return a - b;
-      });
-      if (timeArray[0] < minTimeSenlacSectorOne) {
-        minTimeSenlacSectorOne = timeArray[0];
-        minRouteSenlacSectorOne = route;
+      if (calcWalkTime) {
+        timeArray = timeArray.filter((time) => time > senlacWalkTime);
+      }
+      if (timeArray.length > 0) {
+        timeArray = timeArray.sort(function (a, b) {
+          return a - b;
+        });
+        if (timeArray[0] < minTimeSenlacSectorOne) {
+          minTimeSenlacSectorOne = timeArray[0];
+          minRouteSenlacSectorOne = route;
+        }
       }
     }
   }
@@ -349,4 +402,51 @@ function clearFinchOverview(params) {
   document.getElementById("overviewFinchTime").innerHTML = ``;
   document.getElementById("overviewFinchSplit").innerHTML = ``;
   document.getElementById("overviewFinchTotalTime").innerHTML = ``;
+}
+
+function timestamp() {
+  const dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  document.getElementById("timestamp").innerHTML = `${time.toLocaleTimeString(
+    "en-CA",
+    { hour12: false }
+  )}, ${dayNames[time.getDay()]}, ${time.toLocaleString("default", {
+    month: "long",
+  })} ${time.getDate()}`;
+}
+
+function timesAge() {
+  const diff = Date.now() - start;
+  const seconds = Math.floor((diff / 1000) % 60);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let timeString = "";
+
+  if (days > 0) {
+    timeString += `${days}d `;
+  }
+  if (hours > 0 || days > 0) {
+    timeString += `${hours}h `;
+  }
+  if (minutes > 0 || hours > 0 || days > 0) {
+    timeString += `${minutes}m `;
+  }
+  timeString += `${seconds}s ago`;
+
+  document.getElementById("timesAge").innerHTML = timeString;
+}
+
+function resetTimestamp() {
+  start = Date.now();
+  time = new Date();
+  timestamp();
+  timesAge();
 }
