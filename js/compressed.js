@@ -133,7 +133,7 @@ function clearTime(e) {
 }
 async function loadFinchOverview() {
   let e = {
-      dufferin: await getStopTimes("105", "14652"),
+      dufferin: await getStopTimes("105", "3172"),
       faywood: await getStopTimes("104", "14653"),
       yorkU: await getStopTimes("107", "7275"),
       finch: await getStopTimes("36", "3587"),
